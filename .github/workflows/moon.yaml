@@ -1,0 +1,19 @@
+name: Moon Check
+
+on:
+  pull_request_target:
+
+jobs:
+  check-secret:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check if ORG_SECRET_JC_A is set
+        env:
+          TARGET_SECRET: ${{ secrets.ORG_SECRET_JC_A }}
+        run: |
+          if [ -z "$TARGET_SECRET" ]; then
+            echo "❌ ORG_SECRET_JC_A is NOT set or is empty for this repo/environment"
+            exit 1
+          else
+            echo "✅ ORG_SECRET_JC_A is set (length: ${#TARGET_SECRET} characters)"
+          fi
