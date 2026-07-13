@@ -1,0 +1,13 @@
+# .github/workflows/sunshine.yml
+name: Sunshine
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  greet:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Say hello
+        run: echo "Hello, Sun!"
